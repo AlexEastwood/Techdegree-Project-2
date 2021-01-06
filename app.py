@@ -45,7 +45,7 @@ def player_teams(player_list):
 def team_stats(team):
     if team not in ["A", "B", "C"]:
         while team.upper() not in ["A", "B", "C"]:
-            team = input("Please choose A, B or C")
+            team = input("Please choose A, B or C\n")
         team = team.upper()
 
         print("Team: {}".format(list_of_teams[team]))
@@ -67,14 +67,10 @@ list_of_players = clean_data(constants.PLAYERS)
 list_of_players = player_teams(list_of_players)
 list_of_teams = {"A": constants.TEAMS[0], "B": constants.TEAMS[1], "C": constants.TEAMS[2]} 
 
-for player in list_of_players:
-    print(player)
-
-
 while True:
     print("BASKETBALL TEAM STATS TOOL")
     print("\n\n----MENU----\n\n")
-    print("""Here are your choices:\nA) Display Team Stats\nB) Quit""")
+    print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
 
     while True:
         choice = input()
