@@ -23,6 +23,9 @@ def clean_data(players):
         else:
             player["experience"] = False
             
+        player_guardians = player["guardians"].split(" and ")
+        player["guardians"] = player_guardians
+            
     return new_players
 
 def player_teams(player_list):
@@ -30,9 +33,12 @@ def player_teams(player_list):
 
     i = 0
     j = 0
-
+    experienced = 0
+    
     for player in player_list:
         if i < num_players_team:
+            if experienced == num_players_team / 2:
+                player["team"] = constants.TEAMS[j + 1]
             player["team"] = constants.TEAMS[j]
             i += 1
         else:
@@ -67,21 +73,25 @@ if __name__ == "__main__":
     list_of_players = player_teams(list_of_players)
     list_of_teams = {"A": constants.TEAMS[0], "B": constants.TEAMS[1], "C": constants.TEAMS[2]} 
 
-    while True:
-        print("BASKETBALL TEAM STATS TOOL")
-        print("\n\n----MENU----\n\n")
-        print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
+for player in list_of_players:
+    print(player)
 
-        while True:
-            choice = input()
-            choice = choice.upper()
-            if choice == "A":
-                choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
-                team_stats(choice)
-                break    
-            elif choice == "B":
-                print("Goodbye")
-                exit()
-            else:
-                print("Please choose A or B\n")
-                continue
+
+while True:
+    print("BASKETBALL TEAM STATS TOOL")
+    print("\n\n----MENU----\n\n")
+    print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
+
+    while True:
+        choice = input()
+        choice = choice.upper()
+        if choice == "A":
+            choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
+            team_stats(choice)
+            break    
+        elif choice == "B":
+            print("Goodbye")
+            exit()
+        else:
+            print("Please choose A or B\n")
+            continue
