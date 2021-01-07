@@ -62,34 +62,26 @@ def team_stats(team):
         input()
         return
 
-
-list_of_players = clean_data(constants.PLAYERS)
-list_of_players = player_teams(list_of_players)
-list_of_teams = {"A": constants.TEAMS[0], "B": constants.TEAMS[1], "C": constants.TEAMS[2]} 
-
-while True:
-    print("BASKETBALL TEAM STATS TOOL")
-    print("\n\n----MENU----\n\n")
-    print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
+if __name__ == "__main__":
+    list_of_players = clean_data(constants.PLAYERS)
+    list_of_players = player_teams(list_of_players)
+    list_of_teams = {"A": constants.TEAMS[0], "B": constants.TEAMS[1], "C": constants.TEAMS[2]} 
 
     while True:
-        choice = input()
-        choice = choice.upper()
-        if choice == "A":
-            choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
-            team_stats(choice)
-            break    
-        elif choice == "B":
-            print("Goodbye")
-            exit()
-        else:
-            print("Please choose A or B\n")
-            continue
+        print("BASKETBALL TEAM STATS TOOL")
+        print("\n\n----MENU----\n\n")
+        print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
 
-
-        
-
-
-
-
-            
+        while True:
+            choice = input()
+            choice = choice.upper()
+            if choice == "A":
+                choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
+                team_stats(choice)
+                break    
+            elif choice == "B":
+                print("Goodbye")
+                exit()
+            else:
+                print("Please choose A or B\n")
+                continue
