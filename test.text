@@ -1,0 +1,7 @@
+if experienced
+    if experienced_on_team == people_on_team / 2
+        add to next team 
+    else
+        add to team
+        experienced_on_team += 1
+        
