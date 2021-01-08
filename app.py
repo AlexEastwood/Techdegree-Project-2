@@ -68,12 +68,16 @@ def team_stats(team):
             team = input("Please choose A, B or C\n")
         team = team.upper()
 
+        num_players_team = int(len(list_of_players) / len(constants.TEAMS))
+
         print("\n\nTeam: {}".format(list_of_teams[team]))
         print("Total Players: {}".format(int(len(list_of_players) / len(constants.TEAMS))))
         print("Players on Team:")
         players_one_string = []
         experienced = 0
         inexperienced = 0
+        total_height = 0
+        guardians = []
         
         for player in list_of_players:
             if player["team"] == list_of_teams[team]:
@@ -84,12 +88,19 @@ def team_stats(team):
                     experienced += 1
                 else:
                     inexperienced += 1
+                    
+                total_height += player["height"]
                 
+                for guardian in player["guardians"]:
+                    guardians.append(guardian)
+        
+        average_height = total_height / num_players_team
+        guardians_string = ", ".join(guardians)
         print(", ".join(players_one_string))
         print("Experienced: {}".format(experienced))
         print("Inexperienced: {}".format(inexperienced))
-        
-        
+        print("Average Height: {} inches".format(round(average_height, 1)))
+        print("Guardians: {}".format(guardians_string))
         print("Press Enter to continue")
         input()
         return
@@ -99,25 +110,22 @@ if __name__ == "__main__":
     list_of_players = player_teams(list_of_players)
     list_of_teams = {"A": constants.TEAMS[0], "B": constants.TEAMS[1], "C": constants.TEAMS[2]} 
 
-for player in list_of_players:
-    print(player)
-
-
-while True:
-    print("\n\nBASKETBALL TEAM STATS TOOL")
-    print("\n\n----MENU----\n\n")
-    print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
 
     while True:
-        choice = input()
-        choice = choice.upper()
-        if choice == "A":
-            choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
-            team_stats(choice)
-            break    
-        elif choice == "B":
-            print("Goodbye")
-            exit()
-        else:
-            print("Please choose A or B\n")
-            continue
+        print("\n\nBASKETBALL TEAM STATS TOOL")
+        print("\n\n----MENU----\n\n")
+        print("""Here are your choices:\nA) Display Team Stats\nB) Quit\n""")
+
+        while True:
+            choice = input()
+            choice = choice.upper()
+            if choice == "A":
+                choice = input("A) Panthers\nB) Bandits\nC) Warriors\n")
+                team_stats(choice)
+                break    
+            elif choice == "B":
+                print("Goodbye")
+                exit()
+            else:
+                print("Please choose A or B\n")
+                continue
