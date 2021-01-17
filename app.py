@@ -1,12 +1,12 @@
 import constants
+import copy
 
 
 def clean_data(players):
 
     new_players = []
 
-    for player in players:
-        new_players.append(player)
+    new_players = copy.deepcopy(players)
 
     for player in new_players:
         height_whole = player["height"]
